@@ -39,7 +39,7 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
+					<button type="button" data-toggle="modal" data-target="#tambahBarang" class="btn btn-primary btn-sm">Tambah Data</button>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -47,7 +47,6 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Kode Barang</th>
 									<th>Nama Barang</th>
 									<th>Harga Pokok</th>
 									<th>Harga Jual</th>
@@ -55,18 +54,19 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>AQ2122</td>
-									<td>Aqua Botol</td>
-									<td>Rp1.500</td>
-									<td>Rp2.000</td>
-									<td>
-										<a href="#" class="badge badge-primary">lihat</a>
-										<a href="#" class="badge badge-warning">edit</a>
-										<a href="#" class="badge badge-danger">hapus</a>
-									</td>
-								</tr>
+								<?php $no = 1; ?>
+								<?php foreach ($results as $result) : ?>
+									<tr>
+										<td><?= $no++ ?></td>
+										<td><?= $result->nama_barang ?></td>
+										<td>Rp<?= $result->harga_pokok ?></td>
+										<td>Rp<?= $result->harga_jual ?></td>
+										<td>
+											<a href="<?= base_url() ?>barang/edit/<?= $result->id_barang ?>" class="badge badge-warning">edit</a>
+											<a href="<?= base_url() ?>barang/delete/<?= $result->id_barang ?>" class="badge badge-danger">hapus</a>
+										</td>
+									</tr>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 					</div>
@@ -77,3 +77,51 @@
 
 </div>
 <!-- /.container-fluid -->
+
+<!-- Modal -->
+<div class="modal fade" id="tambahBarang" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Barang</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?= base_url() ?>barang/add" method="POST">
+				<div class="modal-body">
+					<div class="form-group">
+						<label>ID Barang</label>
+						<input type="number" class="form-control" name="id_barang" placeholder="Tulis ID Barang disini...">
+					</div>
+					<div class="form-group">
+						<label>Nama Barang</label>
+						<input type="text" class="form-control" name="nama_barang" placeholder="Tulis Nama Barang disini...">
+					</div>
+					<div class="form-group">
+						<label>Harga Pokok</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Rp</span>
+							</div>
+							<input type="number" name="harga_pokok" class="form-control" placeholder="0">
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Harga Jual</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Rp</span>
+							</div>
+							<input type="number" name="harga_jual" class="form-control" placeholder="0">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

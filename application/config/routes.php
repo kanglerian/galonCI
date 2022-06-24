@@ -54,6 +54,7 @@ $route['dashboard'] = 'dashboard';
 $route['penjualan'] = 'penjualan';
 $route['pelanggan'] = 'pelanggan';
 $route['barang'] = 'barang';
+$route['barang/add'] = 'barang/add';
 $route['pengguna'] = 'pengguna';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
