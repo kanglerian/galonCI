@@ -37,7 +37,7 @@ class Barang extends CI_Controller {
 			'harga_jual' => $this->input->post('harga_jual'),
 		];
 		$this->barang_model->save($data, 'barang');
-		redirect('barang');
+		redirect('basrang');
 	}
 
 	public function update()
