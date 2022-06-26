@@ -59,7 +59,7 @@ class Pelanggan extends CI_Controller {
 	public function delete($id)
 	{
 		$where = [
-			'id_customer' => $this->input->post('id_customer'),
+			'id_customer' => $id
 		];
 		$this->pelanggan_model->delete($where, 'custumer');
 		redirect('pelanggan');

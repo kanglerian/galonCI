@@ -5,12 +5,12 @@ class Penjualan_model extends CI_Model {
 
     public function count()
     {
-        $query = $this->db->get('custumer');
+        $query = $this->db->get('sales');
         return $query->num_rows();
     }
     public function findAll()
     {
-        $query = $this->db->get('custumer');
+        $query = $this->db->get('sales');
         return $query->result();
     }
 
