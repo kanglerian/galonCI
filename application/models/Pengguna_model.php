@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Barang_model extends CI_Model {
+class Pengguna_model extends CI_Model {
 
     public function count()
     {
-        $query = $this->db->get('barang');
+        $query = $this->db->get('users');
         return $query->num_rows();
     }
     public function findAll()
     {
-        $query = $this->db->get('barang');
+        $query = $this->db->get('users');
         return $query->result();
     }
 

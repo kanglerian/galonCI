@@ -18,7 +18,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Pelanggan</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">2000</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah ?></div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-users fa-2x text-gray-300"></i>
@@ -39,7 +39,7 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Data Pelanggan</h6>
+					<button type="button" data-toggle="modal" data-target="#tambahPelanggan" class="btn btn-primary btn-sm">Tambah Data</button>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -47,7 +47,6 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>ID Pelanggan</th>
 									<th>Nama Pelanggan</th>
 									<th>Alamat</th>
 									<th>No Telp</th>
@@ -55,20 +54,19 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>PL1234</td>
-									<td>Lerian Febriana</td>
-									<td>Jl. Desa Kurupuk, Kota Tasikmalaya</td>
-									<td>
-										<span class="badge badge-primary">081232111222</span>
-									</td>
-									<td>
-										<a href="#" class="badge badge-primary">lihat</a>
-										<a href="#" class="badge badge-warning">edit</a>
-										<a href="#" class="badge badge-danger">hapus</a>
-									</td>
-								</tr>
+								<?php $no = 1; ?>
+								<?php foreach ($results as $result) : ?>
+									<tr>
+										<td><?= $no++ ?></td>
+										<td><?= $result->nama_customer ?></td>
+										<td><?= $result->alamat ?></td>
+										<td><?= $result->no_tlp ?></td>
+										<td>
+											<a href="<?= base_url() ?>pelanggan/edit/<?= $result->id_customer ?>" class="badge badge-warning">edit</a>
+											<a href="<?= base_url() ?>pelanggan/delete/<?= $result->id_customer ?>" class="badge badge-danger">hapus</a>
+										</td>
+									</tr>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 					</div>
@@ -79,3 +77,49 @@
 
 </div>
 <!-- /.container-fluid -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="tambahPelanggan" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?= base_url() ?>pelanggan/tambah" method="POST">
+				<div class="modal-body">
+					<div class="form-group">
+						<label>ID Pelanggan</label>
+						<input type="number" class="form-control" name="id_customer" placeholder="Tulis ID pelanggan disini...">
+					</div>
+					<div class="form-group">
+						<label>Nama Pelanggan</label>
+						<input type="text" class="form-control" name="nama_customer" placeholder="Tulis nama pelanggan disini...">
+					</div>
+					<div class="form-group">
+						<label>Alamat</label>
+						<textarea class="form-control" name="alamat" placeholder="Tulis alamat pelanggan disini..."></textarea>
+					</div>
+					<div class="form-group">
+						<label>No Telp</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">
+									<i class="fas fa-phone"></i>
+								</span>
+							</div>
+							<input type="number" name="no_tlp" class="form-control" placeholder="Tulis no telepon disini...">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

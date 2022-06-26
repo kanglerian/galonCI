@@ -18,7 +18,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Barang</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">3000</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah ?></div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-box fa-2x text-gray-300"></i>
@@ -59,8 +59,8 @@
 									<tr>
 										<td><?= $no++ ?></td>
 										<td><?= $result->nama_barang ?></td>
-										<td>Rp<?= $result->harga_pokok ?></td>
-										<td>Rp<?= $result->harga_jual ?></td>
+										<td>Rp<?= number_format($result->harga_pokok, 0, ",", ".") ?></td>
+										<td>Rp<?= number_format($result->harga_jual, 0, ",", ".") ?></td>
 										<td>
 											<a href="<?= base_url() ?>barang/edit/<?= $result->id_barang ?>" class="badge badge-warning">edit</a>
 											<a href="<?= base_url() ?>barang/delete/<?= $result->id_barang ?>" class="badge badge-danger">hapus</a>
@@ -88,7 +88,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url() ?>barang/add" method="POST">
+			<form action="<?= base_url() ?>barang/tambah" method="POST">
 				<div class="modal-body">
 					<div class="form-group">
 						<label>ID Barang</label>

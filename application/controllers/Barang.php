@@ -11,7 +11,8 @@ class Barang extends CI_Controller {
 
 	public function index()
 	{	
-		$data['results'] = $this->barang_model->getAll();
+		$data['jumlah'] = $this->barang_model->count();
+		$data['results'] = $this->barang_model->findAll();
 		$this->load->view('components/header');
 		$this->load->view('pages/barang/index', $data);
 		$this->load->view('components/footer');
@@ -28,7 +29,7 @@ class Barang extends CI_Controller {
 		$this->load->view('components/footer');
 	}
 
-	public function add()
+	public function tambah()
 	{	
 		$data = [
 			'id_barang' => $this->input->post('id_barang'),
@@ -36,7 +37,8 @@ class Barang extends CI_Controller {
 			'harga_pokok' => $this->input->post('harga_pokok'),
 			'harga_jual' => $this->input->post('harga_jual'),
 		];
-		$this->barang_model->save($data, 'barang');
+
+		$this->barang_model->post($data, 'barang');
 		redirect('barang');
 	}
 
@@ -50,7 +52,7 @@ class Barang extends CI_Controller {
 			'harga_pokok' => $this->input->post('harga_pokok'),
 			'harga_jual' => $this->input->post('harga_jual'),
 		];
-		$this->barang_model->put($where, $data, 'barang');
+		$this->barang_model->patch($where, $data, 'barang');
 		redirect('barang');
 	}
 
@@ -59,7 +61,7 @@ class Barang extends CI_Controller {
 		$where = [
 			'id_barang' => $id
 		];
-		$this->barang_model->remove($where, 'barang');
+		$this->barang_model->delete($where, 'barang');
 		redirect('barang');
 	}
 }

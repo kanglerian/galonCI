@@ -18,7 +18,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Pengguna</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah ?></div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-users fa-2x text-gray-300"></i>
@@ -39,7 +39,7 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Data Pengguna</h6>
+					<button type="button" data-toggle="modal" data-target="#tambahPengguna" class="btn btn-primary btn-sm">Tambah Data</button>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -55,20 +55,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Lerian Febriana</td>
-									<td>kanglerian</td>
-									<td>jakarta123</td>
-									<td>
-										<span class="badge badge-danger">Owner</span>
-									</td>
-									<td>
-										<a href="#" class="badge badge-primary">lihat</a>
-										<a href="#" class="badge badge-warning">edit</a>
-										<a href="#" class="badge badge-danger">hapus</a>
-									</td>
-								</tr>
+								<?php $no = 1; ?>
+								<?php foreach ($results as $result) : ?>
+									<tr>
+										<td><?= $no++ ?></td>
+										<td><?= $result->nama_user ?></td>
+										<td><?= $result->username ?></td>
+										<td><?= $result->password ?></td>
+										<td><?= $result->level === '1' ? 'Administrator': 'Pengguna' ?></td>
+										<td>
+											<a href="<?= base_url() ?>pengguna/edit/<?= $result->id_users ?>" class="badge badge-warning">edit</a>
+											<a href="<?= base_url() ?>pengguna/delete/<?= $result->id_users ?>" class="badge badge-danger">hapus</a>
+										</td>
+									</tr>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 					</div>
@@ -79,3 +79,62 @@
 
 </div>
 <!-- /.container-fluid -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="tambahPengguna" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?= base_url() ?>pengguna/tambah" method="POST">
+				<div class="modal-body">
+					<div class="form-group">
+						<label>ID Pengguna</label>
+						<input type="number" class="form-control" name="id_users" placeholder="Tulis ID pengguna disini...">
+					</div>
+					<div class="form-group">
+						<label>Nama Lengkap</label>
+						<input type="text" class="form-control" name="nama_user" placeholder="Tulis nama lengkap disini...">
+					</div>
+					<div class="form-group">
+						<label>Username</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">@</span>
+							</div>
+							<input type="text" name="username" class="form-control" placeholder="Tulis username disini...">
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">
+									<i class="fas fa-key"></i>
+								</span>
+							</div>
+							<input type="password" name="password" class="form-control" placeholder="Tulis password disini...">
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Level</label>
+						<select name="level" class="form-control">
+							<option selected>Pilih</option>
+							<option value="1">Adminstrator</option>
+							<option value="2">Pengguna</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

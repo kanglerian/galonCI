@@ -44,7 +44,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active">
+			<li class="nav-item <?php if($this->uri->segment(1) === 'dashboard') { echo 'active'; } ?>">
 				<a class="nav-link" href="<?= base_url() ?>dashboard">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
@@ -59,14 +59,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item">
+			<li class="nav-item <?php if($this->uri->segment(1) === 'penjualan') { echo 'active'; } ?>">
 				<a class="nav-link" href="<?= base_url() ?>penjualan">
 					<i class="fas fa-shopping-cart"></i>
 					<span>Penjualan</span></a>
 			</li>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item">
+			<li class="nav-item <?php if($this->uri->segment(1) === 'pelanggan') { echo 'active'; } ?>">
 				<a class="nav-link" href="<?= base_url() ?>pelanggan">
 					<i class="fas fa-user"></i>
 					<span>Pelanggan</span></a>
@@ -82,14 +82,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item">
+			<li class="nav-item <?php if($this->uri->segment(1) === 'barang') { echo 'active'; } ?>">
 				<a class="nav-link" href="<?= base_url() ?>barang">
 					<i class="fas fa-box"></i>
 					<span>Barang</span></a>
 			</li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item">
+			<li class="nav-item <?php if($this->uri->segment(1) === 'pengguna') { echo 'active'; } ?>">
 				<a class="nav-link" href="<?= base_url() ?>pengguna">
 					<i class="fas fa-users"></i>
 					<span>Pengguna</span></a>
