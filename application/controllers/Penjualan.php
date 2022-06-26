@@ -8,6 +8,8 @@ class Penjualan extends CI_Controller {
 	  parent::__construct();
 	  $this->load->model('penjualan_model');
 	  $this->load->model('pelanggan_model');
+	  $this->load->model('pengguna_model');
+	  $this->load->model('detail_model');
 	}
 
 	public function index()
@@ -15,6 +17,7 @@ class Penjualan extends CI_Controller {
 		$data['jumlah'] = $this->penjualan_model->count();
 		$data['results'] = $this->penjualan_model->findAll();
 		$data['pelanggan'] = $this->pelanggan_model->findAll();
+		$data['pengguna'] = $this->pengguna_model->findAll();
 		$this->load->view('components/header');
 		$this->load->view('pages/penjualan/index', $data);
 		$this->load->view('components/footer');
@@ -40,8 +43,14 @@ class Penjualan extends CI_Controller {
 			'id_users' => $this->input->post('id_users'),
 			'potongan' => $this->input->post('potongan'),
 		];
-
+		$detail = [
+			'id_sales' => $this->input->post('id_sales'),
+			'id_barang' => $this->input->post('id_barang'),
+			'qty' => $this->input->post('qty'),
+		];
+		echo $data;
 		$this->penjualan_model->post($data, 'sales');
+		$this->detail_model->post($detail, 'detail_sales');
 		redirect('penjualan');
 	}
 
