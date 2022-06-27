@@ -10,13 +10,14 @@ class Penjualan_model extends CI_Model {
     }
     public function findAll()
     {
-        $query = $this->db->get('sales');
+        $query = $this->db->query('SELECT * FROM sales JOIN custumer ON custumer.id_customer = sales.id_customer');
         return $query->result();
     }
 
     public function getOne($where, $table)
     {
-        $query = $this->db->get_where($table, $where);
+        $id = implode("|",$where);
+        $query = $this->db->query("SELECT * FROM sales JOIN custumer ON custumer.id_customer = sales.id_customer JOIN users ON users.id_users = sales.id_users WHERE id_sales = '$id'");
         return $query->result();
     }
 

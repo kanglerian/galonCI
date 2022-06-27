@@ -29,7 +29,10 @@ class Penjualan extends CI_Controller
 		$where = [
 			'id_sales' => $id
 		];
+		$data['detail'] = $this->detail_model->getWhere($where);
 		$data['penjualan'] = $this->penjualan_model->getOne($where, 'sales');
+		$data['pelanggan'] = $this->pelanggan_model->findAll();
+		$data['pengguna'] = $this->pengguna_model->findAll();
 		$this->load->view('components/header');
 		$this->load->view('pages/penjualan/edit', $data);
 		$this->load->view('components/footer');
@@ -45,7 +48,7 @@ class Penjualan extends CI_Controller
 			'potongan' => $this->input->post('potongan'),
 		];
 		$detail = [];
-		foreach ($_POST['id_barang'] as $key) {
+		foreach ($_POST['id_barang'] as $key => $val) {
 			$detail[] = [
 				'id_sales' =>  $_POST['id_sales'],
 				'id_barang' =>  $_POST['id_barang'][$key],
@@ -81,5 +84,15 @@ class Penjualan extends CI_Controller
 		$this->detail_model->delete($where, 'detail_sales');
 		$this->penjualan_model->delete($where, 'sales');
 		redirect('penjualan');
+	}
+
+	public function print($id)
+	{
+		$where = [
+			'id_sales' => $id
+		];
+		$data['detail'] = $this->detail_model->getWhere($where);
+		$data['penjualan'] = $this->penjualan_model->getOne($where, 'sales');
+		$this->load->view('pages/penjualan/print', $data);
 	}
 }

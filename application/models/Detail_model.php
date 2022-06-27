@@ -1,13 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Detail_model extends CI_Model {
+class Detail_model extends CI_Model
+{
 
     public function count()
     {
         $query = $this->db->get('detail_sales');
         return $query->num_rows();
     }
+
+    public function getWhere($where)
+    {
+        // $id = 'PJ0627375';
+        $id = implode("|",$where);
+        $query = $this->db->query("SELECT * FROM detail_sales JOIN barang ON barang.id_barang = detail_sales.id_barang WHERE id_sales = '$id'");
+        return $query->result();
+    }
+
     public function findAll()
     {
         $query = $this->db->get('detail_sales');

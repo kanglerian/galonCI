@@ -15,10 +15,11 @@
 				<div class="card-body">
 					<form action="<?= base_url() ?>penjualan/tambah" method="POST">
 						<div class="form-row">
+							<input type="hidden" name="id_users" value="1">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>No. Transaksi</label>
-									<input type="text" class="form-control" name="id_sales" value="PJ<?= date("md") ?><?= mt_rand(111, 999); ?>">
+									<input type="text" class="form-control" name="id_sales" value="PJ<?= date("md") ?><?= mt_rand(111, 999); ?>" readonly>
 									<input type="hidden" name="tgl_sales" value="<?= date("Y-m-d"); ?>">
 								</div>
 							</div>
@@ -35,7 +36,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>Potongan</label>
-									<input type="number" class="form-control" name="potongan">
+									<input type="number" class="form-control" name="potongan" placeholder="Tambah potongan disini...">
 								</div>
 							</div>
 							<div class="col-md-2">
@@ -89,9 +90,10 @@
 										<td><?= $no++ ?></td>
 										<td><?= $result->id_sales ?></td>
 										<td><?= $result->tgl_sales ?></td>
-										<td><?= $result->id_customer ?></td>
+										<td><?= $result->nama_customer ?></td>
 										<td>Rp<?= number_format($result->potongan, 0, ",", ".") ?></td>
 										<td>
+											<a href="<?= base_url() ?>penjualan/print/<?= $result->id_sales ?>" class="badge badge-info">print</a>
 											<a href="<?= base_url() ?>penjualan/edit/<?= $result->id_sales ?>" class="badge badge-warning">edit</a>
 											<a href="<?= base_url() ?>penjualan/delete/<?= $result->id_sales ?>" class="badge badge-danger">hapus</a>
 										</td>
@@ -135,9 +137,9 @@
 		list.removeChild(list.lastElementChild);
 	}
 	document.addEventListener('keyup', (event) => {
-		if (event.code === 'Equal') {
+		if (event.code === 'F1') {
 			tambahForm();
-		} else if (event.code === 'Minus') {
+		} else if (event.code === 'F2') {
 			hapusForm();
 		}
 	}, false);
