@@ -22,7 +22,7 @@ class Detail_model extends CI_Model {
 
     public function post($data, $table)
     {
-        $this->db->insert($table, $data);
+        $this->db->insert_batch($table, $data);
     }
 
     public function patch($where, $data, $table)

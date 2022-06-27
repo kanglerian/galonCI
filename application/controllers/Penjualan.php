@@ -1,19 +1,20 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Penjualan extends CI_Controller {
+class Penjualan extends CI_Controller
+{
 
 	public function __construct()
 	{
-	  parent::__construct();
-	  $this->load->model('penjualan_model');
-	  $this->load->model('pelanggan_model');
-	  $this->load->model('pengguna_model');
-	  $this->load->model('detail_model');
+		parent::__construct();
+		$this->load->model('penjualan_model');
+		$this->load->model('pelanggan_model');
+		$this->load->model('pengguna_model');
+		$this->load->model('detail_model');
 	}
 
 	public function index()
-	{	
+	{
 		$data['jumlah'] = $this->penjualan_model->count();
 		$data['results'] = $this->penjualan_model->findAll();
 		$data['pelanggan'] = $this->pelanggan_model->findAll();
@@ -24,7 +25,7 @@ class Penjualan extends CI_Controller {
 	}
 
 	public function edit($id)
-	{	
+	{
 		$where = [
 			'id_sales' => $id
 		];
@@ -35,7 +36,7 @@ class Penjualan extends CI_Controller {
 	}
 
 	public function tambah()
-	{	
+	{
 		$data = [
 			'id_sales' => $this->input->post('id_sales'),
 			'tgl_sales' => $this->input->post('tgl_sales'),
@@ -44,18 +45,24 @@ class Penjualan extends CI_Controller {
 			'potongan' => $this->input->post('potongan'),
 		];
 		$detail = [
-			'id_sales' => $this->input->post('id_sales'),
-			'id_barang' => $this->input->post('id_barang'),
-			'qty' => $this->input->post('qty'),
+			[
+				'id_sales' => $this->input->post('id_sales'),
+				'id_barang' => 1,
+				'qty' => 200,
+			],[
+				'id_sales' => $this->input->post('id_sales'),
+				'id_barang' => 2,
+				'qty' => 300,
+			],
 		];
-		echo $data;
+
 		$this->penjualan_model->post($data, 'sales');
 		$this->detail_model->post($detail, 'detail_sales');
 		redirect('penjualan');
 	}
 
 	public function update()
-	{	
+	{
 		$where = [
 			'id_sales' => $this->input->post('id_sales'),
 		];
@@ -74,6 +81,7 @@ class Penjualan extends CI_Controller {
 		$where = [
 			'id_sales' => $id
 		];
+		$this->detail_model->delete($where, 'detail_sales');
 		$this->penjualan_model->delete($where, 'sales');
 		redirect('penjualan');
 	}

@@ -40,13 +40,25 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>ID Barang</label>
-											<input type="number" class="form-control" name="id_barang" placeholder="Tulis ID Barang disini..." autofocus>
+											<input type="number" class="form-control" name="id_barang[]" placeholder="Tulis ID Barang disini..." autofocus>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Jumlah</label>
-											<input type="number" class="form-control" name="qty" placeholder="Tulis jumlah disini...">
+											<input type="number" class="form-control" name="qty[]" placeholder="Tulis jumlah disini...">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>ID Barang</label>
+											<input type="number" class="form-control" name="id_barang[]" placeholder="Tulis ID Barang disini..." autofocus>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Jumlah</label>
+											<input type="number" class="form-control" name="qty[]" placeholder="Tulis jumlah disini...">
 										</div>
 									</div>
 								</div>
@@ -108,11 +120,3 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<script>
-	$(document).ready(function() {
-		$("#woy").click(function() {
-			alert("woy");
-		});
-	});
-</script>
