@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <p>Kode: <?= $pj->id_sales ?></p>
         <p>Tanggal: <?= $pj->tgl_sales ?></p>
         <p>Kasir: <?= $pj->nama_user ?></p>
-        <p>Detail:</p>
+        <p>Barang:</p>
         <table>
             <thead>
                 <tr>
