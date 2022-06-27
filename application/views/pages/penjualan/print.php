@@ -9,6 +9,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Struk</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 2px;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,11 +34,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </tr>
             </thead>
             <tbody>
-                <?php $jumlah = 0;?>
+                <?php $jumlah = 0; ?>
                 <?php foreach ($detail as $det) : ?>
                     <tr>
                         <td><?= $det->nama_barang ?></td>
-                        <td><?= $det->qty ?></td>
+                        <td><?= $det->qty ?>@<?= $det->harga_jual ?></td>
                         <td>Rp<?= number_format($det->qty * $det->harga_jual, 0, ",", ".") ?></td>
                         <?php $jumlah += $det->qty * $det->harga_jual ?>
                     </tr>

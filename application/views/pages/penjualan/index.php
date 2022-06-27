@@ -13,7 +13,7 @@
 		<div class="col-xl-12 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2">
 				<div class="card-body">
-					<form action="<?= base_url() ?>penjualan/tambah" method="POST">
+					<form action="<?= base_url() ?>penjualan/tambah" method="POST" id="formPJ">
 						<div class="form-row">
 							<input type="hidden" name="id_users" value="1">
 							<div class="col-md-3">
@@ -36,7 +36,12 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>Potongan</label>
-									<input type="number" class="form-control" name="potongan" placeholder="Tambah potongan disini...">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text">Rp</span>
+										</div>
+									<input type="number" class="form-control" name="potongan" placeholder="0">
+									</div>
 								</div>
 							</div>
 							<div class="col-md-2">
@@ -44,13 +49,26 @@
 									<button type="button" style="margin-top:35px" onclick="tambahForm()" class="btn btn-primary btn-sm mr-2 btn-block">(+)</button>
 									<button type="button" style="margin-top:35px" onclick="hapusForm()" class="btn btn-danger btn-sm btn-block">(-)</button>
 								</div>
-								<input type="submit" class="d-none">
 							</div>
 						</div>
 						<div class="form-row mt-3">
 							<div class="col-md-12" id="hasil">
-								<!-- Content ID Barang -->
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="number" class="form-control" name="id_barang[]" placeholder="Tulis ID Barang disini..." autofocus>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="number" class="form-control" name="qty[]" placeholder="Tulis jumlah disini...">
+										</div>
+									</div>
+								</div>
+
 							</div>
+							<!-- Content ID Barang -->
 						</div>
 					</form>
 				</div>
@@ -67,9 +85,6 @@
 		<div class="col-xl-12 col-12">
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<!-- <button type="button" data-toggle="modal" data-target="#tambahPenjualan" class="btn btn-primary btn-sm">Tambah Data</button> -->
-				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -141,6 +156,8 @@
 			tambahForm();
 		} else if (event.code === 'F2') {
 			hapusForm();
+		} else if (event.code === 'Enter') {
+			document.getElementById("formPJ").submit();
 		}
 	}, false);
 	// document.addEventListener('keyup', (event) => {
