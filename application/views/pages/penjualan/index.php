@@ -13,55 +13,42 @@
 		<div class="col-xl-12 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2">
 				<div class="card-body">
-					<form action="<?= base_url()?>penjualan/tambah" method="POST">
-						<div class="row">
-							<div class="col-md-4">
+					<form action="<?= base_url() ?>penjualan/tambah" method="POST">
+						<div class="form-row">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label>No. Transaksi</label>
 									<input type="text" class="form-control" name="id_sales" value="PJ<?= date("md") ?><?= mt_rand(111, 999); ?>">
 									<input type="hidden" name="tgl_sales" value="<?= date("Y-m-d"); ?>">
-									<div class="form-group">
-										<label>Pelanggan</label>
-										<select name="id_customer" class="form-control">
-											<?php foreach ($pelanggan as $pelang) : ?>
-												<option value="<?= $pelang->id_customer ?>"><?= $pelang->nama_customer ?></option>
-											<?php endforeach; ?>
-										</select>
-									</div>
-									<div class="form-group">
-										<label>Potongan</label>
-										<input type="number" class="form-control" name="potongan">
-									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Pelanggan</label>
+									<select name="id_customer" class="form-control">
+										<?php foreach ($pelanggan as $pelang) : ?>
+											<option value="<?= $pelang->id_customer ?>"><?= $pelang->nama_customer ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Potongan</label>
+									<input type="number" class="form-control" name="potongan">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="d-flex">
+									<button type="button" style="margin-top:35px" onclick="tambahForm()" class="btn btn-primary btn-sm mr-2 btn-block">(+)</button>
+									<button type="button" style="margin-top:35px" onclick="hapusForm()" class="btn btn-danger btn-sm btn-block">(-)</button>
 								</div>
 								<input type="submit" class="d-none">
 							</div>
-							<div class="col-md-8">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>ID Barang</label>
-											<input type="number" class="form-control" name="id_barang[]" placeholder="Tulis ID Barang disini..." autofocus>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Jumlah</label>
-											<input type="number" class="form-control" name="qty[]" placeholder="Tulis jumlah disini...">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>ID Barang</label>
-											<input type="number" class="form-control" name="id_barang[]" placeholder="Tulis ID Barang disini..." autofocus>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Jumlah</label>
-											<input type="number" class="form-control" name="qty[]" placeholder="Tulis jumlah disini...">
-										</div>
-									</div>
-								</div>
+						</div>
+						<div class="form-row mt-3">
+							<div class="col-md-12" id="hasil">
+								<!-- Content ID Barang -->
 							</div>
 						</div>
 					</form>
@@ -120,3 +107,44 @@
 
 </div>
 <!-- /.container-fluid -->
+
+<script>
+	function tambahForm() {
+		const element = `
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+						<input type="number" class="form-control" name="id_barang[]" placeholder="Tulis ID Barang disini..." autofocus>
+					</div>
+				</div>
+			<div class="col-md-6">
+				<div class="form-group">
+						<input type="number" class="form-control" name="qty[]" placeholder="Tulis jumlah disini...">
+					</div>
+				</div>
+			</div>
+		</div>
+		`;
+		const form = document.createElement("div");
+		form.innerHTML = element;
+		document.getElementById('hasil').appendChild(form);
+	}
+
+	function hapusForm() {
+		const list = document.getElementById('hasil');
+		list.removeChild(list.lastElementChild);
+	}
+	document.addEventListener('keyup', (event) => {
+		if (event.code === 'Equal') {
+			tambahForm();
+		} else if (event.code === 'Minus') {
+			hapusForm();
+		}
+	}, false);
+	// document.addEventListener('keyup', (event) => {
+	// 	var name = event.key;
+	// 	var code = event.code;
+	// 	// Alert the key name and key code on keydown
+	// 	alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+	// }, false);
+</script>

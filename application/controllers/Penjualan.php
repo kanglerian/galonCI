@@ -44,17 +44,14 @@ class Penjualan extends CI_Controller
 			'id_users' => $this->input->post('id_users'),
 			'potongan' => $this->input->post('potongan'),
 		];
-		$detail = [
-			[
-				'id_sales' => $this->input->post('id_sales'),
-				'id_barang' => 1,
-				'qty' => 200,
-			],[
-				'id_sales' => $this->input->post('id_sales'),
-				'id_barang' => 2,
-				'qty' => 300,
-			],
-		];
+		$detail = [];
+		foreach ($_POST['id_barang'] as $key) {
+			$detail[] = [
+				'id_sales' =>  $_POST['id_sales'],
+				'id_barang' =>  $_POST['id_barang'][$key],
+				'qty' =>  $_POST['qty'][$key],
+			];
+		}
 
 		$this->penjualan_model->post($data, 'sales');
 		$this->detail_model->post($detail, 'detail_sales');
