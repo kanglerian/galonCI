@@ -26,7 +26,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>Pelanggan</label>
-									<select name="id_customer" class="form-control">
+									<select name="id_customer" class="js-example-basic-single form-control">
 										<?php foreach ($pelanggan as $pelang) : ?>
 											<option value="<?= $pelang->id_customer ?>"><?= $pelang->nama_customer ?></option>
 										<?php endforeach; ?>
@@ -108,7 +108,7 @@
 										<td><?= $result->nama_customer ?></td>
 										<td>Rp<?= number_format($result->potongan, 0, ",", ".") ?></td>
 										<td>
-											<a href="<?= base_url() ?>penjualan/print/<?= $result->id_sales ?>" class="badge badge-info">print</a>
+											<a href="<?= base_url() ?>penjualan/print/<?= $result->id_sales ?>" class="badge badge-info" id="cetak">print</a>
 											<a href="<?= base_url() ?>penjualan/edit/<?= $result->id_sales ?>" class="badge badge-warning">edit</a>
 											<a href="<?= base_url() ?>penjualan/delete/<?= $result->id_sales ?>" class="badge badge-danger">hapus</a>
 										</td>

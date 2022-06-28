@@ -45,6 +45,14 @@
 <script src="<?= base_url() ?>vendor/jquery/jquery.min.js"></script>
 <script src="<?= base_url() ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+	// In your Javascript (external .js resource or <script> tag)
+	$(document).ready(function() {
+		$('.js-example-basic-single').select2();
+	});
+</script>
+
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url() ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 

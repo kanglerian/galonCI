@@ -19,7 +19,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-          <div class="row">
+            <div class="row">
               <div class="col-12">
                 <form class="form-inline" action="<?= base_url() ?>penjualan/update" method="POST">
                   <input type="hidden" name="id_sales" value="<?= $user->id_sales ?>">
@@ -72,7 +72,7 @@
                 </form>
               </div>
             </div>
-            
+
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -94,7 +94,8 @@
                       <td><?= $no++ ?></td>
                       <td><?= $det->nama_barang ?></td>
                       <td><?= $det->qty ?></td>
-                      <td>Rp<?= number_format($jumlah += $det->qty * $det->harga_jual, 0, ",", ".") ?></td>
+                      <td>Rp<?= number_format($det->qty * $det->harga_jual, 0, ",", ".") ?></td>
+                      <?php $jumlah += $det->qty * $det->harga_jual ?>
                       <td>
                         <a href="<?= base_url() ?>detail/delete/<?= $det->id_detail_sales ?>" class="badge badge-danger">hapus</a>
                       </td>

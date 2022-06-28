@@ -9,14 +9,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Struk</title>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            padding: 2px;
-        }
-    </style>
 </head>
 
 <body>
@@ -24,7 +16,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <p>Kode: <?= $pj->id_sales ?></p>
         <p>Tanggal: <?= $pj->tgl_sales ?></p>
         <p>Kasir: <?= $pj->nama_user ?></p>
-        <p>Barang:</p>
         <table>
             <thead>
                 <tr>

@@ -20,7 +20,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	<!-- Custom styles for this template-->
 	<link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="<?= base_url() ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -44,7 +45,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item <?php if($this->uri->segment(1) === 'dashboard') { echo 'active'; } ?>">
+			<li class="nav-item <?php if ($this->uri->segment(1) === 'dashboard') {
+														echo 'active';
+													} ?>">
 				<a class="nav-link" href="<?= base_url() ?>dashboard">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
@@ -59,14 +62,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item <?php if($this->uri->segment(1) === 'penjualan') { echo 'active'; } ?>">
+			<li class="nav-item <?php if ($this->uri->segment(1) === 'penjualan') {
+														echo 'active';
+													} ?>">
 				<a class="nav-link" href="<?= base_url() ?>penjualan">
 					<i class="fas fa-shopping-cart"></i>
 					<span>Penjualan</span></a>
 			</li>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item <?php if($this->uri->segment(1) === 'pelanggan') { echo 'active'; } ?>">
+			<li class="nav-item <?php if ($this->uri->segment(1) === 'pelanggan') {
+														echo 'active';
+													} ?>">
 				<a class="nav-link" href="<?= base_url() ?>pelanggan">
 					<i class="fas fa-user"></i>
 					<span>Pelanggan</span></a>
@@ -82,14 +89,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item <?php if($this->uri->segment(1) === 'barang') { echo 'active'; } ?>">
+			<li class="nav-item <?php if ($this->uri->segment(1) === 'barang') {
+														echo 'active';
+													} ?>">
 				<a class="nav-link" href="<?= base_url() ?>barang">
 					<i class="fas fa-box"></i>
 					<span>Barang</span></a>
 			</li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item <?php if($this->uri->segment(1) === 'pengguna') { echo 'active'; } ?>">
+			<li class="nav-item <?php if ($this->uri->segment(1) === 'pengguna') {
+														echo 'active';
+													} ?>">
 				<a class="nav-link" href="<?= base_url() ?>pengguna">
 					<i class="fas fa-users"></i>
 					<span>Pengguna</span></a>
@@ -102,7 +113,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
-			
+
 		</ul>
 		<!-- End of Sidebar -->
 
